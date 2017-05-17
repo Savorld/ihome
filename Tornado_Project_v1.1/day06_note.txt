@@ -1,0 +1,14 @@
+select @rownum:=@rownum+1 as rownum,b.* from (select @rownum:=0) as a,(select distinct hi_house_id,hi_title,hi_price,hi_room_count,hi_order_count,hi_index_image_url,hi_address,up_avatar,hi_ctime from ih_house_info left join ih_order_info on hi_house_id=oi_house_id inner join ih_user_profile on hi_user_id=up_user_id order by hi_ctime desc) as b;
+
+
+select * from (select @rownum:=@rownum+1 as rownum,b.* from (select @rownum:=0) as a,(select distinct hi_house_id,hi_title,hi_price,hi_room_count,hi_order_count,hi_index_image_url,hi_address,up_avatar,hi_ctime from ih_house_info left join ih_order_info on hi_house_id=oi_house_id inner join ih_user_profile on hi_user_id=up_user_id order by hi_ctime desc) as b) as t where rownum between 3 and 6;
+
+
+
+
+select distinct hi_house_id,hi_title,hi_price from ih_house_info order by hi_price desc;
+
+select * from (select @rownum:=@rownum+1 as rownum,b.* from (select @rownum:=0) a ,(select distinct hi_house_id,hi_title,hi_price from ih_house_info order by hi_price desc) b) t where rownum between 3 and 5;
+
+
+

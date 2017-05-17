@@ -1,0 +1,119 @@
+1 图片验证码
+描述：用来生成图片验证码
+
+URL： /api/imagecode?codeid=123&pcodeid=
+method: get
+传入参数：
+名称   类型   说明           是否必须
+codeid  int  验证码编号          是
+pcodeid int 上一个验证码编号      是
+
+返回值:
+图片二进制数据
+
+2 发送短信验证码
+
+
+URL： /api/phonecode
+method: post
+传入参数： json
+名称   类型  说明    是否必须
+mobile  string         是
+image_code_id  string  是
+image_code_text  string是
+
+{
+   "mobile":"18516951234",
+   "image_code_id":"f78a6c48-70fc-4b6a-b564-7e8043903e24",
+   "image_code_text":"fmrc",
+}
+
+返回值：
+{
+  "errno":0
+  "errmsg":"OK"
+}
+
+
+3 上传新房源
+
+URL：/api/house/info
+method: post
+
+传入参数： json
+Content-Type="application/json"
+{
+"title":"",
+"price":"",
+"area_id":"1",
+
+"room_count":"",
+"acreage":"",
+"unit":"",
+"capacity":"",
+"beds":"",
+"deposit":"",
+"min_days":"",
+"max_days":"",
+"facility":["7","8"]
+}"
+
+正常返回值：
+{
+    "errno":"0",
+    "errmsg":"OK",
+    "house_id":123
+}
+
+异常返回：
+{
+    "errno":"4001",
+    "errmsg":
+}
+
+4 房屋列表
+
+URL : /api/house/list
+
+method: get
+
+传入参数：
+参数名         类型          是否必须
+start_date   string         否
+end_date    string          否
+area_id       string        否
+sort_key      string        否         默认时间倒序
+page          int           否        默认第一页
+
+返回值：
+{
+    "errno":"0",
+    "errmsg":"OK",
+    "houses":[
+        {
+          "houses_id":123,
+          "houses_title":"abc",
+          "price":12000,
+          "address":"地理位置",
+          "room_counts":"出租间数",
+          "order_counts":"入住次数",
+          "user_avatar":"用户头像",
+          "house_img_url":"房屋图片"
+      },
+      {
+          "houses_id":123,
+          "houses_title":"abc",
+          "price":12000,
+          "address":"地理位置",
+          "room_counts":"出租间数",
+          "order_counts":"入住次数",
+          "user_avatar":"用户头像",
+          "house_img_url":"房屋图片"
+      },
+    ],
+    "total_page":总共页面数
+}
+
+
+
+
